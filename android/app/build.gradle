@@ -1,0 +1,29 @@
+// Packages the native build (make android) into an APK. SDL's Java glue comes from the SDL2 source tree that
+// tools/android_deps.sh downloads; native libraries and generated resources come from build/android.
+apply plugin: 'com.android.application'
+
+def root = rootProject.projectDir.parentFile
+android {
+    namespace 'io.github.joeyport'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'io.github.joeyport'
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+        ndk { abiFilters 'arm64-v8a' }
+    }
+    sourceSets.main {
+        java.srcDirs += new File(root, 'work/android/src/SDL2-2.30.9/android-project/app/src/main/java')
+        jniLibs.srcDirs = [new File(root, 'build/android/jniLibs')]
+        assets.srcDirs = [new File(root, 'build/android/assets')]
+        res.srcDirs += new File(root, 'build/android/res')
+    }
+    buildTypes {
+        debug { minifyEnabled false }
+        release { minifyEnabled false; signingConfig signingConfigs.debug }
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_1_8; targetCompatibility JavaVersion.VERSION_1_8 }
+    lint { abortOnError false }
+}

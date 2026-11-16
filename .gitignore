@@ -1,0 +1,25 @@
+# ---- Konami content: NEVER commit (users supply their own copy) ----
+/game/
+/Yu-Gi-Oh!*/
+*.exe
+*.dat
+*.wav
+*.yga
+*.bmp
+*.ydc
+
+# ---- generated from the user's copy (translated Konami code / extracted assets) ----
+/build/
+/work/
+screen.bmp
+
+# ---- local tooling ----
+/.venv/
+__pycache__/
+*.pyc
+.DS_Store
+/addon/
+/pics/
+/android/.gradle/
+/android/app/build/
+/android/local.properties

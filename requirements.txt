@@ -1,0 +1,5 @@
+# Python tools (lifter, analysis, asset tools, differential tests)
+capstone==5.0.7
+pefile
+pillow
+unicorn==2.1.4

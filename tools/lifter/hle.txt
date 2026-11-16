@@ -1,0 +1,8 @@
+# Guest functions replaced by native host implementations (HLE).
+# Direct calls to these always go through x86_call() so the override wins.
+0x54a1d0  operator new / malloc (cdecl)
+0x5c38c0  memcpy (CRT asm, overlap-safe; cdecl) -> native memmove
+0x5c6110  memmove (CRT asm; cdecl) -> native memmove
+0x5bedd0  owns a card from another PoC game (cdecl) -> always true (host/hle_game.c)
+0x5bea40  this game's card-pack mask (cdecl) -> 7 for the reward draw (host/hle_game.c)
+0x44e900  text field update (thiscall) -> wrapped to drive the Vita on-screen keyboard (host/textinput.c)
